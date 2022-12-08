@@ -1,0 +1,21 @@
+.heading-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+  margin: 1.5rem 0.3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  flex: 1 0 auto;
+}
+
+.action {
+  flex: 1 0 auto;
+}
+
+.tip {
+  font-size: 1rem;
+}

@@ -42,7 +42,7 @@ const Main = () => {
   };
 
   return (
-    <div className="container-fluid movie-app">
+    <div className="movie-app">
       <MovieListHeading
         title="Movies"
         tip="SHIFT + Wheel - To Scroll sideways"

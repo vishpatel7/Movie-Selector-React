@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./MovieListHeading.css";
+
 const MovieListHeading = (props) => {
   return (
-    <div className="row d-flex align-items-center mt-4 mb-4">
-      <div className="col">
-        <h1>
-          {props.title}{" "}
-          {props.tip ? <span className="d-flex h6">{props.tip}</span> : null}
-        </h1>
+    <div className="heading-container">
+      <div className="title">
+        <h1>{props.title} </h1>
+        {props.tip ? <span className="tip">{props.tip}</span> : null}
       </div>
-      {props.action ? <div className="col col-sm-4">{props.action}</div> : null}
+      {props.action ? <div className="action">{props.action}</div> : null}
     </div>
   );
 };

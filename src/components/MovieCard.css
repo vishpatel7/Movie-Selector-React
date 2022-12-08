@@ -1,0 +1,32 @@
+.movie-frame {
+  width: fit-content;
+  position: relative;
+  transition: transform 0.2s;
+  justify-content: start;
+}
+
+.footer-overlay {
+  display: flex;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  transition: 0.5s ease;
+  width: 100%;
+  opacity: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+}
+
+.footer-overlay span {
+  margin: 0 auto;
+}
+
+.movie-frame:hover {
+  cursor: pointer;
+}
+
+.movie-frame:hover .footer-overlay {
+  opacity: 1;
+}

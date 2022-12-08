@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const FavouriteButton = (props) => {
   return (
     <div role="button" onClick={props.onClick}>
-      <span className="mr-2">
+      <span>
         {props.isFavourite ? "Remove from Favorites" : "Add to Favorites"}
       </span>{" "}
       <svg

@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./SearchInput.css";
+
 const SearchInput = (props) => {
   return (
     <input
-      className="form-control"
+      className="search-input"
       onChange={(event) => props.onChange?.(event.target.value)}
       value={props.value}
       placeholder="Type to search..."
