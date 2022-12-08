@@ -1,10 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  MovieList,
+  getFavouritesFromStorage,
+  searchMovies,
+  setFavouritesInStorage,
+} from "../utils";
+import {
+  FavouriteButton,
+  MovieCard,
   MovieListHeading,
-  SearchBox,
-  AddFavourite,
-  RemoveFavourites,
+  SearchInput,
 } from "../components";
 
 const Main = () => {
@@ -12,72 +16,62 @@ const Main = () => {
   const [favourites, setFavourites] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
-  const getMovieRequest = useCallback(
-    async (resp) => {
-      const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=ddd1d67b`;
-      const response = await fetch(url);
-      const responseJSON = await response.json();
-
-      if (responseJSON.Search) {
-        setMovies(responseJSON.Search);
-      }
-    },
-    [searchValue]
-  );
+  useEffect(() => {
+    searchMovies(searchValue).then((result) => {
+      setMovies(result.entries);
+    });
+  }, [searchValue]);
 
   useEffect(() => {
-    getMovieRequest(searchValue);
-  }, [getMovieRequest, searchValue]);
-
-  useEffect(() => {
-    const movieFavourites =
-      JSON.parse(localStorage.getItem("react-movie-app-favourites")) || [];
+    const movieFavourites = getFavouritesFromStorage();
     setFavourites(movieFavourites);
   }, []);
-
-  const saveToLocalStorage = (items = []) => {
-    localStorage.setItem("react-movie-app-favourites", JSON.stringify(items));
-  };
 
   const addFavouriteMovie = (movie) => {
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+    setFavouritesInStorage(newFavouriteList);
   };
 
   const removeFavouriteMovie = (movie) => {
     const newFavouriteList = favourites.filter(
-      (favourites) => favourites.imdbID !== movie.imdbID
+      (favourites) => favourites.id !== movie.id
     );
     setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+    setFavouritesInStorage(newFavouriteList);
   };
 
   return (
     <div className="container-fluid movie-app">
-      <div className="row d-flex align-items-center mt-4 mb-4">
-        <MovieListHeading
-          heading="Movies"
-          tip="SHIFT + Wheel - To Scroll sideways"
-        />
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-      </div>
+      <MovieListHeading
+        title="Movies"
+        tip="SHIFT + Wheel - To Scroll sideways"
+        action={<SearchInput value={searchValue} onChange={setSearchValue} />}
+      />
       <div className="row">
-        <MovieList
-          movies={movies}
-          handleFavouriteClick={addFavouriteMovie}
-          favouriteComponent={AddFavourite}
-        />
+        {movies?.map((movie, index) => (
+          <MovieCard
+            posterSrc={movie.posterSrc}
+            footerAction={
+              <FavouriteButton onClick={() => addFavouriteMovie(movie)} />
+            }
+          />
+        ))}
       </div>
-      <div className="row d-flex align-items-center mt-4 mb-4">
-        <MovieListHeading heading="Favourites" tip="" />
-      </div>
+
+      <MovieListHeading title="Favourites" />
       <div className="row">
-        <MovieList
-          movies={favourites}
-          handleFavouriteClick={removeFavouriteMovie}
-          favouriteComponent={RemoveFavourites}
-        />
+        {favourites?.map((movie, index) => (
+          <MovieCard
+            posterSrc={movie.posterSrc}
+            footerAction={
+              <FavouriteButton
+                isFavourite
+                onClick={() => removeFavouriteMovie(movie)}
+              />
+            }
+          />
+        ))}
       </div>
     </div>
   );
