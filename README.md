@@ -102,12 +102,12 @@ For you run this project you will need to install it locally using npm.
 
 3. Install NPM packages
    ```bash
-   npm install  
+   yarn install  
    ```
 
 4. Run start command on npm
    ```bash
-   npm start
+   yarn start
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
