@@ -16,3 +16,21 @@ body {
 .row::-webkit-scrollbar {
   display: none;
 }
+
+.row {
+  --gutter-x: 1.5rem;
+  --gutter-y: 0;
+  display: flex;
+  margin-top: calc(-1 * var(--gutter-y));
+  margin-right: calc(-.5 * var(--gutter-x));
+  margin-left: calc(-.5 * var(--gutter-x))
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-right: calc(var(--gutter-x) * .5);
+  margin-left: calc(var(--gutter-x) * .5);
+  margin-top: var(--gutter-y);
+}

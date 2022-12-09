@@ -78,7 +78,6 @@ This section is for all frameworks/libraries used on this project. If you wanna 
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [JavaScript](https://www.javascript.com)
 * [React.js](https://reactjs.org/)
-* [Bootstrap](https://getbootstrap.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

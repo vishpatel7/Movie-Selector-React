@@ -17,6 +17,7 @@
   padding: 20px;
   text-align: center;
   align-items: center;
+  justify-content: center;
 }
 
 .footer-overlay span {
@@ -29,4 +30,8 @@
 
 .movie-frame:hover .footer-overlay {
   opacity: 1;
+}
+
+[role=button] {
+  cursor: pointer;
 }
