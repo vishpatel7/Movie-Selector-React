@@ -36,11 +36,11 @@ For you run this project you will need to install it locally using npm.
 
 3. Install NPM packages
    ```bash
-   yarn install  
+   npm install  
    ```
 
 4. Run start command on npm
    ```bash
-   yarn start
+   npm run start
    ```
 
